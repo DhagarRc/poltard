@@ -23,6 +23,7 @@
       }
       #toolbar {
         right: 0;
+        top: 0;
         width: 20%;
         height: 100vh;
         position: absolute;
@@ -33,27 +34,2255 @@
   </head>
   <body>
     <div id="toolbar">
-      <button onclick="checkTileset()">Check tileset</button> 
+      <button onclick="checkTileset()">Check tileset</button>
+      <button onclick="zoom(zoomIn=false)">Zoom out</button>
+      <button onclick="zoom(zoomIn=true)">Zoom in</button> 
     </div>
     <canvas id="boardCanvas"></canvas>
   </body>
   <script>
   //"settlement": {"pop" : {"amount":0}, "production" : {"foodProduction":0, "oreProduction":0, "woodProduction":0}}
   const map = {
-    "layer" : [
-      [{"tileSet":"mountains"}, {"tileSet":"mountains", "layer2":"mountain"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"},
-      {"tileSet":"grasslands"}],
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}],
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}],
+  "layer": [
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "mountains"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "grasslands"
+      },
+      {
+        "tileSet": "grasslands"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      }
+    ],
+    [
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      },
+      {
+        "tileSet": "sea"
+      }
+    ]
+  ]
+}
 
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}], 
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}], 
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}], 
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}], 
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}], 
-      [{"tileSet":"mountains"}, {"tileSet":"mountains"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}, {"tileSet":"grasslands"}], 
-    ] 
-  }
   const tileSet = {
     "city" : [6, 0],
     "town" : [6, 3],
@@ -63,7 +2292,7 @@
     "sea" : [1, 6],
     "grasslands" : [3, 4]
   }
-  const canvas = document.getElementById("boardCanvas"); canvas.width = window.innerWidth; canvas.height = window.innerHeight + 1000;
+  const canvas = document.getElementById("boardCanvas"); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
   const ctx = canvas.getContext("2d"); ctx.font = "48px serif"; ctx.imageSmoothingEnabled = false;
   
   const tileSource = new Image();
@@ -72,12 +2301,29 @@
   const tileHeight = 16;
   const tileCols = Math.round(tileSource.width/tileWidth);
   const tileRows = Math.round(tileSource.height/tileHeight);
+  let tileSize = 10
+  const zoomSize = 10
+
+  
+  function zoom(zoomIn=true) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    if (zoomIn == true) {
+      if (tileSize > zoomSize)
+        tileSize -= zoomSize
+    } else if (zoomIn == false) {
+      tileSize += zoomSize
+    }
+    console.log(tileSize)
+    drawMap()
+    drawGrid()
+
+  }
 
   function checkTileset() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     for (let y = 0; y < tileRows; y++) {
       for (let x = 0; x < tileCols; x++) {
-      ctx.drawImage(tileSource, x*tileWidth, y*tileHeight, tileWidth, tileHeight, 80*x, 80*y, 80, 80) 
+      ctx.drawImage(tileSource, x*tileWidth, y*tileHeight, tileWidth, tileHeight, tileSize*x, tileSize*y, tileSize, tileSize) 
       }
     }
   }
@@ -85,29 +2331,28 @@
     for (let y in map["layer"]) {
       for (let x in map["layer"][y]) {
         ctx.drawImage(tileSource, tileSet[map["layer"][y][x]["tileSet"]][0]*tileWidth, tileSet[map["layer"][y][x]["tileSet"]][1]*tileHeight, 
-        tileWidth, tileHeight, 80*x, 80*y, 80, 80)
+        tileWidth, tileHeight, tileSize*x, tileSize*y, tileSize, tileSize)
         if ("layer2" in map["layer"][y][x]) {
           ctx.drawImage(tileSource, tileSet[map["layer"][y][x]["layer2"]][0]*tileWidth, tileSet[map["layer"][y][x]["layer2"]][1]*tileHeight, 
-          tileWidth, tileHeight, 80*x, 80*y, 80, 80)
+          tileWidth, tileHeight, tileSize*x, tileSize*y, tileSize, tileSize)
         }
       }
     }
+  }
+  function clickCollision(x, y) {
+    
   }
 
   function drawGrid() {
-    if (canvas.getContext) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = "rgb(200 0 0)";
-      for (let y in map["map"]){
-        for (let x in map["map"][y]){
-          ctx.strokeRect(80*x, 80*y, 80, 80);
-          ctx.fillText(map["map"][y][x], 80*x, 80*y);
-        }
-      }
-    } else {
-      console.log("Canvas is unsupported by your browser")
+    ctx.fillStyle = "rgb(200 0 0)";
+    for (let y in map["layer"]){
+      for (let x in map["layer"][y]){
+        ctx.strokeRect(tileSize*x, tileSize*y, tileSize, tileSize);
+      }  
     }
   }
-  drawMap() 
+  drawMap()
+  drawGrid()
+  
   </script>
 </html>
